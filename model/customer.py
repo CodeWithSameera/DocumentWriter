@@ -1,0 +1,17 @@
+class Customer:
+    def __init__(self, data):
+        self.first_name = data['CUSTOMER_FIRST_NAME']
+        self.last_name = data['CUSTOMER_LAST_NAME']
+        self.email = data['CUSTOMER_E_MAIL_ADDR']
+        self.title = data['CUSTOMER_TITLE']
+        self.company = data['CUSTOMER_COMPANY']
+        self.address_1 = data['CUSTOMER_ADDR1']
+        self.address_2 = data['CUSTOMER_ADDR2']
+        self.city = data['CUSTOMER_CITY']
+        self.state = data['CUSTOMER_STATE']
+        self.province = data['CUSTOMER_PROVINCE']
+        self.country = data['CUSTOMER_COUNTRY']
+        self.postal_code = data['CUSTOMER_ZIP_CODE']
+        self.business_phone = data['CUSTOMER_BUSINESS_PHONE']
+        self.system_code = data['customer_code']
+        self.title = data['CUSTOMER_TITLE']
