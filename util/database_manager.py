@@ -11,7 +11,7 @@ class DatabaseManager:
         self.connection.row_factory = sqlite3.Row
         self.logger = setup_logger()
 
-    def fetch_quote_data(self, cart_id):
+    def fetch_quote_data(self, cart_id,limit=10,offset=0):
 
         query = """
         SELECT 
@@ -61,13 +61,14 @@ class DatabaseManager:
         LEFT JOIN CUSTOMER_INFO ci ON c.CUSTOMER_ID = ci.CUSTOMER_ID
         LEFT JOIN CART_ITEM ci ON c.CART_ID = ci.CART_ID
         WHERE c.CART_ID = ?
+        LIMIT ? OFFSET ?;
         """
 
         with self.connection as conn:
-            results = conn.execute(query, (cart_id,)).fetchall()
+            results = conn.execute(query, (cart_id,limit,offset)).fetchall()
 
         if not results:
-            self.logger.error(f"No data found for cart_id {cart_id}")
+            self.logger.error(f"No data found for cart_id {cart_id} with limit {limit} and offset {offset}")
             raise ValueError(f"No data found for cart_id {cart_id}")
 
         first_row = dict(results[0])
